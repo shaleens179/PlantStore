@@ -11,11 +11,12 @@ connectDB();
 
 const app = express();
 
-// CORS configuration
+// CORS configuration - Allow all origins
 app.use(cors({
-  origin: ["http://localhost:3000", "http://localhost:3001"],
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: false
 }));
 
 app.use(express.json());
@@ -39,6 +40,6 @@ const PORT = process.env.PORT || 5001;
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
-  console.log(`📡 CORS enabled for: http://localhost:3000, http://localhost:3001`);
+  console.log(`📡 CORS enabled for all origins (*)`);
   console.log(`🌿 Plant Store API ready at http://localhost:${PORT}`);
 });
